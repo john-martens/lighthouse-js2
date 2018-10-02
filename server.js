@@ -12,11 +12,13 @@ var io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
   io.emit('news', { datalist:msglist });
+    
     socket.on('message', function (msg) {    
         console.log('Received Message: ', msg);
         msglist.push(msg);
         io.emit('message', msg);
     });
+    
 });
 
 server.listen(8080, function() {
