@@ -6,17 +6,12 @@ $("button").on('click', function() {
   var d = new Date();
   socket.emit('message', d.toLocaleTimeString() + "> " + who + ": " + text);
   $('#message').val('');
-  
   return false;
 });
 
+
 socket.on('message', function (msg) {
   $('<li>').text(msg).appendTo('#history');
-    if(msg.indexOf("time is it?") > -1){
-        var d = new Date().toLocaleTimeString(); 
-        var msg = d + "> SERVER: Time is: " + d
-        socket.emit('message', msg);
-    }
 });
 
 
